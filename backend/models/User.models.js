@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 import bcrypt from "bcryptjs"
 
 const userSchema=new mongoose.Schema({
-    username:{
+    userName:{
         type:String,
         required:true,
         unique:true
@@ -30,7 +30,7 @@ userSchema.pre("save",async function(next){
 })
 
 
-userSchema.methods.matchPasswords=async function(enterPassword){
+userSchema.methods.matchPassword=async function(enterPassword){ 
     return await bcrypt.compare(enterPassword,this.password);
 }
 
