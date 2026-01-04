@@ -6,6 +6,7 @@ const registerUser=async(req,res)=>{
     const {userName,email,password}=req.body;
 
     try {
+        
         if(!username || !email || !password){
             return res.status(400)
             .json({message:"please fill all the fields"})
@@ -18,12 +19,13 @@ const registerUser=async(req,res)=>{
             .json({message:"User already exists"})
         }
 
-        const user=await User.create({userName,email,password})
-        res.status(400).json({
-            id:user._id,
-            userName:user.userName,
-            email : user.email,
+        const user=await User.create({
+            userName,
+            email,
+            password
         })
+    
+
     } catch (error) {
         res.status(500)
         .json({message :"server error"});
