@@ -1,30 +1,34 @@
-
-import express from "express"
-import dotenv from 'dotenv'
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 
-// files
 import { connectDB } from "./config/db.database.js";
-
-
-const app=express();
-
-app.use(cors({
-    origin:process.env.CORS_ORIGIN,
-    Credential:true
-}))
+import userRouter from "./routes/auth.routes.js";
 
 dotenv.config();
 
-app.use(cookieParser())
+const app = express();
 
-app.get('/',(req,res)=>{
-    res.send("started builing auth using mern")
+/* BODY PARSERS */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true, 
+}));
+
+app.use(cookieParser());
+
+app.get("/", (req, res) => {
+    res.send("started building auth using mern");
 });
 
 connectDB();
+6
+app.use("/api/v1/user", userRouter);
 
-app.listen(process.env.PORT || 5000,()=>{
-    console.log(`server started at port ${process.env.PORT}`)
-})
-
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`server started at port ${process.env.PORT}`);
+});

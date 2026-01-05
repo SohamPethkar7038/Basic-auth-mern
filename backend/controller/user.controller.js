@@ -1,6 +1,6 @@
 import express from 'express'
 
-import {User} from '../models/User.models.js'
+import User from '../models/User.models.js'
 import { generateAccessAndRefreshTokens } from '../utility/user.utility.js';
 
 const registerUser=async(req,res)=>{
@@ -8,7 +8,7 @@ const registerUser=async(req,res)=>{
 
     try {
 
-        if(!username || !email || !password){
+        if(!userName || !email || !password){
             return res.status(400)
             .json({message:"please fill all the fields"})
         }
@@ -38,9 +38,12 @@ const registerUser=async(req,res)=>{
     
 
     } catch (error) {
-        res.status(500)
-        .json({message :"server error"});
-    }
+    console.error("ERROR:", error);
+    res.status(500).json({
+        message: "server error",
+        error: error.message
+    });
+}
 }
 
 
@@ -84,9 +87,11 @@ const loginUser=async(req,res)=>{
 
         
     } catch (error) {
-        res.status(500)
-        .json({message:"server error"});
-    }
+    console.error("ERROR:", error);
+    res.status(500).json({
+        message: "server error",
+    });
+}
 }
 
 
