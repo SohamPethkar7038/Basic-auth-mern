@@ -10,9 +10,9 @@ router.route('/register').post(registerUser);
 
 router.route('/login').post(loginUser);
 
-// router.get('/profile', verifyJWT, (req, res) => {
-//     res.json({ user: req.user });  // req.user is set by verifyJWT
-// });
+router.get('/profile', verifyJWT, (req, res) => {
+    res.json({ user: req.user });  // req.user is set by verifyJWT
+});
 
 
 

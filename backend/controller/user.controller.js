@@ -80,6 +80,7 @@ const loginUser=async(req,res)=>{
         .cookie("refreshToken",refreshToken,options)
         .json({
             user:loggedInUser,
+            accessToken,
             message:"User logged in successfully"
         })
 
