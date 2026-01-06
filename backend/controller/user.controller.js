@@ -81,6 +81,7 @@ const loginUser=async(req,res)=>{
         .json({
             user:loggedInUser,
             accessToken,
+            refreshToken,
             message:"User logged in successfully"
         })
 
