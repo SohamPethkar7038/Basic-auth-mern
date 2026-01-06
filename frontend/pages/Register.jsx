@@ -20,11 +20,11 @@ const Register = ({setUser}) => {
         try {
             const res=await axios.post('/api/v1/user/register',formData)
             localStorage.setItem("token",res.data.accessToken)
-            console.log(res.data)
-            setUser(res.data)
+            console.log(res.data.user)
+            setUser(res.data.user)
             navigate('/')
         } catch (error) {
-            setError(error.respone?.data?.message || 'Registration failed')
+            setError(error.response?.data?.message || 'Registration failed')
         }
     }
   return (
@@ -63,7 +63,7 @@ const Register = ({setUser}) => {
                     required
                     />
                 </div>
-                <button className='w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 font-medium cursor-pointer'>Login</button>
+                <button className='w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 font-medium cursor-pointer'>Register</button>
             </form>
         </div>
     </div>
