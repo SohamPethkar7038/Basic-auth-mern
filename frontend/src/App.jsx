@@ -6,6 +6,7 @@ import Register from '../pages/Register.jsx'
 import Login from '../pages/Login.jsx'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import NotFound from '../components/NotFound.jsx'
 
 function App() {
   const [user,setUser]=useState(null)
@@ -50,6 +51,7 @@ function App() {
         <Route path="/" element={<Home user={user} error={error}/>}/>
         <Route path="/register" element={user ? <Navigate to='/' />:<Register setUser={setUser}/>}/>
         <Route path='/login' element={user ? <Navigate to='/'/> : <Login setUser={setUser}/>}/>
+        <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </Router>
   )
