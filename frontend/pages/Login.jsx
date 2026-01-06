@@ -20,7 +20,7 @@ const Login = ({setUser}) => {
             const res=await axios.post('/api/v1/user/login',formData)
             localStorage.setItem("token",res.data.accessToken)
             console.log(res.data)
-            setUser(res.data)
+            setUser(res.data.user)
             navigate('/')
         } catch (error) {
             setError(error.respone?.data?.message || 'Login failed')

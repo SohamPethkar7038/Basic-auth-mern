@@ -33,10 +33,10 @@ function App() {
 
   return (
     <Router>
-      <Navbar/>
+      <Navbar user={user} setUser={setUser}/>
 
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home user={user} error={error}/>}/>
         <Route path="/register" element={<Register setUser={setUser}/>}/>
         <Route path='/login' element={<Login setUser={setUser}/>}/>
       </Routes>
